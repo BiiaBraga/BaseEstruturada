@@ -528,6 +528,19 @@
     inset 0 1px 0 rgba(255, 255, 255, 0.045),
     0 0 0 1px color-mix(in srgb, var(--card-accent), transparent 82%),
     0 16px 42px color-mix(in srgb, var(--card-accent), transparent 91%);
+  transition:
+    transform 180ms ease,
+    border-color 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.learning-card:hover {
+  transform: translateY(-8px) scale(1.012);
+  border-color: color-mix(in srgb, var(--card-accent), transparent 34%);
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, 0.06),
+    0 0 0 1px color-mix(in srgb, var(--card-accent), transparent 68%),
+    0 22px 54px color-mix(in srgb, var(--card-accent), transparent 84%);
 }
 
 .sort .learning-card {
@@ -923,5 +936,15 @@
   .card-library-icon {
     width: 72px;
     height: 72px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .learning-card {
+    transition: none;
+  }
+
+  .learning-card:hover {
+    transform: none;
   }
 }
