@@ -38,6 +38,7 @@ type LearningItem = {
   Icon?: LucideIcon
   visualClassName?: string
   customVisual?: 'sortBars'
+  href?: string
 }
 
 type Category = {
@@ -83,28 +84,29 @@ const categories: Category[] = [
       },
       {
         title: 'Pilha estatica',
-        description: 'Estrutura LIFO baseada em arranjo com topo controlado por indice.',
+        description: 'Estrutura UEPS baseada em arranjo com topo controlado por indice.',
         theme: 'pink',
         image: pilhaEstaticaImage,
         visualClassName: 'linear-image',
+        href: '#pilha-estatica',
       },
       {
         title: 'Pilha encadeada',
-        description: 'Pilha LIFO usando ponteiros.',
+        description: 'Estrutura UEPS usando nos e ponteiros.',
         theme: 'cyan',
         image: pilhaEncadeadaImage,
         visualClassName: 'linear-image',
       },
       {
         title: 'Fila estatica',
-        description: 'Fila FIFO em arranjo circular.',
+        description: 'Fila PEPS em arranjo circular.',
         theme: 'yellow',
         image: filaEstaticaImage,
         visualClassName: 'linear-image',
       },
       {
         title: 'Fila encadeada',
-        description: 'Fila FIFO baseada em ponteiros.',
+        description: 'Fila PEPS baseada em ponteiros.',
         theme: 'blue',
         image: filaEncadeadaImage,
         visualClassName: 'linear-image',
@@ -193,6 +195,10 @@ const sectionIcons: Record<Category['icon'], LucideIcon> = {
 
 function LockIcon() {
   return <LockKeyhole className="lock-icon" aria-hidden="true" strokeWidth={2.4} />
+}
+
+function PlayImageIcon() {
+  return <img className="lock-icon play-image-icon" src={playIcon} alt="" aria-hidden="true" />
 }
 
 function SectionIcon({ type }: { type: Category['icon'] }) {
@@ -319,10 +325,17 @@ function Home() {
                       <h3>{item.title}</h3>
                       <p>{item.description}</p>
                     </div>
-                    <button className="locked-button" disabled>
-                      <LockIcon />
-                      EM BREVE
-                    </button>
+                    {item.href ? (
+                      <a className="locked-button card-action-button" href={item.href}>
+                        <PlayImageIcon />
+                        Visualizar
+                      </a>
+                    ) : (
+                      <button className="locked-button" disabled>
+                        <LockIcon />
+                        EM BREVE
+                      </button>
+                    )}
                   </article>
                 ))}
               </div>
