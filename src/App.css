@@ -782,6 +782,527 @@
   --about-tone: #ff4fa6;
 }
 
+.performance-page {
+  display: grid;
+  gap: 20px;
+}
+
+.performance-header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  padding-top: 8px;
+}
+
+.performance-header h1 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: clamp(2.1rem, 3.2vw, 3.4rem);
+  line-height: 1;
+}
+
+.performance-header p,
+.performance-panel > p,
+.compact-panel > p {
+  color: #b9c1d3;
+  line-height: 1.6;
+}
+
+.clear-progress-button {
+  min-height: 48px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0 18px;
+  border: 1px solid rgba(103, 130, 193, 0.22);
+  border-radius: 8px;
+  color: #c7cedd;
+  background: rgba(7, 16, 34, 0.58);
+  cursor: pointer;
+}
+
+.clear-progress-button svg {
+  width: 18px;
+  height: 18px;
+}
+
+.confirm-toast {
+  position: sticky;
+  top: 16px;
+  z-index: 12;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 18px 20px;
+  border: 1px solid rgba(255, 181, 38, 0.38);
+  border-radius: 10px;
+  background:
+    radial-gradient(circle at 0% 0%, rgba(255, 181, 38, 0.14), transparent 32%),
+    linear-gradient(145deg, rgba(23, 20, 41, 0.98), rgba(7, 16, 34, 0.98));
+  box-shadow: 0 18px 48px rgba(0, 0, 0, 0.34);
+}
+
+.confirm-toast strong {
+  color: #ffffff;
+}
+
+.confirm-toast p {
+  margin: 6px 0 0;
+  color: #c8cfdf;
+  line-height: 1.55;
+}
+
+.confirm-toast-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  flex: 0 0 auto;
+}
+
+.confirm-toast-actions button {
+  min-height: 40px;
+  padding: 0 15px;
+  border: 1px solid rgba(103, 130, 193, 0.24);
+  border-radius: 8px;
+  color: #d9deed;
+  background: rgba(34, 51, 91, 0.42);
+  cursor: pointer;
+}
+
+.confirm-toast-actions button.danger {
+  border-color: rgba(255, 96, 112, 0.42);
+  color: #ffffff;
+  background: linear-gradient(135deg, rgba(210, 45, 78, 0.82), rgba(120, 28, 52, 0.86));
+}
+
+.performance-summary,
+.performance-panel,
+.performance-tip-card {
+  border: 1px solid rgba(103, 130, 193, 0.16);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(56, 132, 255, 0.1), transparent 28%),
+    linear-gradient(145deg, rgba(9, 18, 37, 0.9), rgba(5, 13, 27, 0.94));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.performance-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  padding: 34px 22px;
+}
+
+.performance-stat {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 0 20px;
+  text-align: center;
+  border-right: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.performance-stat:last-child {
+  border-right: 0;
+}
+
+.performance-stat svg {
+  width: 44px;
+  height: 44px;
+  color: var(--performance-tone);
+}
+
+.performance-stat strong {
+  color: #ffffff;
+  font-size: 2.1rem;
+  line-height: 1;
+}
+
+.performance-stat span {
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.performance-stat p {
+  margin: 0;
+  color: #aeb7ca;
+}
+
+.performance-note,
+.performance-warning {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 0;
+  color: #b9c1d3;
+  line-height: 1.6;
+}
+
+.performance-note svg,
+.performance-warning svg {
+  width: 20px;
+  height: 20px;
+  flex: 0 0 auto;
+}
+
+.performance-warning {
+  color: #aeb7ca;
+}
+
+.performance-warning svg {
+  color: #ffb526;
+}
+
+.performance-panel {
+  padding: 26px 24px;
+}
+
+.performance-panel h2,
+.performance-tip-card h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.45rem;
+}
+
+.category-progress-list {
+  display: grid;
+  margin-top: 22px;
+}
+
+.category-progress-item {
+  display: grid;
+  grid-template-columns: 30px minmax(190px, 1fr) minmax(180px, 0.75fr) 54px 150px;
+  align-items: center;
+  gap: 16px;
+  min-height: 56px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+}
+
+.category-progress-item svg {
+  width: 26px;
+  height: 26px;
+  color: var(--performance-tone);
+}
+
+.category-progress-item strong,
+.category-progress-item b {
+  color: #ffffff;
+}
+
+.category-progress-item em {
+  justify-self: end;
+  min-width: 136px;
+  padding: 10px 12px;
+  border: 1px solid rgba(103, 130, 193, 0.14);
+  border-radius: 8px;
+  color: #c8cfdf;
+  font-style: normal;
+  text-align: center;
+  background: rgba(23, 36, 64, 0.62);
+}
+
+.category-progress-track {
+  height: 12px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: rgba(38, 55, 88, 0.68);
+}
+
+.category-progress-track span {
+  display: block;
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, var(--performance-tone), color-mix(in srgb, var(--performance-tone), #ffffff 18%));
+}
+
+.continue-tip {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin: 18px 0 0;
+  color: #c8cfdf;
+}
+
+.continue-tip svg {
+  width: 20px;
+  height: 20px;
+  color: #ffb526;
+}
+
+.performance-columns {
+  display: grid;
+  grid-template-columns: minmax(0, 0.92fr) minmax(0, 1.08fr);
+  align-items: stretch;
+  gap: 18px;
+}
+
+.compact-panel {
+  display: grid;
+  grid-template-rows: auto auto auto minmax(0, 1fr) auto;
+  align-content: stretch;
+}
+
+.visited-list,
+.activity-list {
+  display: grid;
+  gap: 16px;
+  margin: 22px 0 24px;
+  padding: 0;
+  list-style: none;
+}
+
+.visited-list li,
+.activity-list li {
+  display: grid;
+  align-items: center;
+  gap: 12px;
+  color: #ffffff;
+}
+
+.visited-list li {
+  grid-template-columns: 26px minmax(0, 1fr) auto;
+}
+
+.activity-list li {
+  grid-template-columns: 36px minmax(0, 1fr) auto;
+}
+
+.visited-list svg,
+.activity-list svg {
+  color: #965cff;
+}
+
+.activity-list svg {
+  width: 30px;
+  height: 30px;
+  padding: 7px;
+  border: 1px solid rgba(56, 162, 255, 0.18);
+  border-radius: 7px;
+  color: #38a2ff;
+  background: rgba(56, 162, 255, 0.08);
+}
+
+.visited-list time,
+.activity-list time {
+  color: #b8c0d0;
+}
+
+.activity-list small {
+  display: block;
+  color: #aeb7ca;
+  line-height: 1.35;
+}
+
+.empty-performance-message {
+  display: grid;
+  place-items: center;
+  min-height: 148px;
+  margin: 22px 0 24px;
+  border: 1px dashed rgba(103, 130, 193, 0.2);
+  border-radius: 8px;
+  color: #aeb7ca;
+  text-align: center;
+}
+
+.outline-action {
+  align-self: end;
+  min-height: 44px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  border: 1px solid rgba(135, 82, 255, 0.38);
+  border-radius: 8px;
+  color: #c88cff;
+  font: inherit;
+  text-decoration: none;
+  background: rgba(36, 24, 75, 0.18);
+  cursor: pointer;
+}
+
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+  gap: 18px;
+  margin: 26px 0 22px;
+}
+
+.achievement-card {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+  min-width: 0;
+  text-align: center;
+}
+
+.achievement-card svg {
+  width: 74px;
+  height: 74px;
+  padding: 16px;
+  color: var(--performance-tone);
+  border: 2px solid currentColor;
+  border-radius: 18px;
+  background: color-mix(in srgb, var(--performance-tone), transparent 92%);
+}
+
+.achievement-card strong {
+  color: #ffffff;
+}
+
+.achievement-card span {
+  color: #b9c1d3;
+  font-size: 0.92rem;
+}
+
+.achievement-card.locked {
+  opacity: 0.42;
+  filter: grayscale(0.6);
+}
+
+.achievement-card.achieved svg {
+  box-shadow: 0 12px 28px color-mix(in srgb, var(--performance-tone), transparent 74%);
+}
+
+.performance-note.inside {
+  padding-top: 18px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.performance-tip-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 22px;
+  padding: 24px 28px;
+  background:
+    radial-gradient(circle at 88% 40%, rgba(126, 82, 255, 0.24), transparent 24%),
+    linear-gradient(145deg, rgba(28, 24, 67, 0.86), rgba(7, 16, 34, 0.94));
+}
+
+.performance-tip-card p {
+  max-width: 720px;
+  margin: 0;
+  color: #d0d6e6;
+  line-height: 1.62;
+}
+
+.performance-tip-card img {
+  width: 132px;
+  height: 100px;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 26px rgba(126, 82, 255, 0.36));
+}
+
+.performance-popup-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 40;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(1, 6, 16, 0.72);
+  backdrop-filter: blur(10px);
+}
+
+.performance-popup {
+  width: min(880px, 100%);
+  max-height: min(760px, calc(100vh - 48px));
+  display: grid;
+  grid-template-rows: auto minmax(0, 1fr);
+  overflow: hidden;
+  border: 1px solid rgba(103, 130, 193, 0.22);
+  border-radius: 14px;
+  background:
+    radial-gradient(circle at 14% 0%, rgba(126, 82, 255, 0.16), transparent 30%),
+    linear-gradient(145deg, rgba(9, 18, 37, 0.98), rgba(5, 13, 27, 0.98));
+  box-shadow: 0 28px 90px rgba(0, 0, 0, 0.58);
+}
+
+.performance-popup header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 22px 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.performance-popup header button {
+  min-height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 0 14px;
+  border: 1px solid rgba(103, 130, 193, 0.22);
+  border-radius: 8px;
+  color: #d9deed;
+  background: rgba(34, 51, 91, 0.42);
+  cursor: pointer;
+}
+
+.performance-popup h2 {
+  margin: 0 0 6px;
+  color: #ffffff;
+}
+
+.performance-popup p {
+  margin: 0;
+  color: #aeb7ca;
+}
+
+.performance-popup-content {
+  min-height: 0;
+  overflow: auto;
+  padding: 22px 24px 24px;
+}
+
+.full-list {
+  margin: 0;
+}
+
+.visited-list.full-list li {
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+}
+
+.visited-list.full-list small {
+  display: block;
+  color: #aeb7ca;
+  line-height: 1.35;
+}
+
+.performance-stat.violet,
+.category-progress-item.violet,
+.achievement-card.violet {
+  --performance-tone: #965cff;
+}
+
+.performance-stat.cyan,
+.category-progress-item.cyan,
+.achievement-card.cyan {
+  --performance-tone: #15d6a3;
+}
+
+.performance-stat.blue,
+.category-progress-item.blue,
+.achievement-card.blue {
+  --performance-tone: #3b9cff;
+}
+
+.performance-stat.yellow,
+.category-progress-item.yellow,
+.achievement-card.yellow {
+  --performance-tone: #ffb526;
+}
+
+.performance-stat.green,
+.category-progress-item.green,
+.achievement-card.green {
+  --performance-tone: #72e34d;
+}
+
 .category-section {
   display: grid;
   gap: 14px;
@@ -3224,6 +3745,28 @@
   .developer-photo {
     width: 190px;
   }
+
+  .performance-summary,
+  .achievement-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .performance-stat:nth-child(2) {
+    border-right: 0;
+  }
+
+  .category-progress-item {
+    grid-template-columns: 30px minmax(170px, 1fr) minmax(150px, 0.72fr) 54px;
+  }
+
+  .category-progress-item em {
+    grid-column: 2 / -1;
+    justify-self: start;
+  }
+
+  .performance-columns {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -3397,6 +3940,71 @@
 
   .social-row {
     justify-content: center;
+  }
+
+  .performance-header,
+  .performance-tip-card {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .clear-progress-button {
+    width: 100%;
+  }
+
+  .confirm-toast {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .confirm-toast-actions button {
+    flex: 1 1 140px;
+  }
+
+  .performance-summary,
+  .achievement-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .performance-stat {
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 18px 0;
+  }
+
+  .performance-stat:last-child {
+    border-bottom: 0;
+  }
+
+  .category-progress-item {
+    grid-template-columns: 28px minmax(0, 1fr) auto;
+    padding: 14px 0;
+  }
+
+  .category-progress-track,
+  .category-progress-item em {
+    grid-column: 2 / -1;
+  }
+
+  .performance-tip-card img {
+    align-self: center;
+  }
+
+  .performance-popup-backdrop {
+    padding: 12px;
+  }
+
+  .performance-popup {
+    max-height: calc(100vh - 24px);
+  }
+
+  .performance-popup header {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .performance-popup header button {
+    width: 100%;
   }
 
   .learning-card,

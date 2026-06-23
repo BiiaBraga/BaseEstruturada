@@ -3,6 +3,7 @@ import { ArrowLeft, ArrowDown, ArrowUp, BarChart3, Box, CheckCircle2, ChevronDow
   Copy, Eye, GitBranch, Lightbulb, List, Moon, Play, RotateCcw, Sparkles, StepBack } from 'lucide-react'
 import Navbar from '../../components/navbar/Navbar'
 import staticStackImage from '../../assets/algoritmos/pilhaEstatica.png'
+import { recordSimulation } from '../../data/progressStorage'
 
 type StackTab = 'simulation' | 'code' | 'concept' | 'memory' | 'complexity'
 type MainOperation = 'push' | 'pop' | 'peek'
@@ -583,21 +584,26 @@ function StaticStack() {
     const currentValues = lastStep.values
     const currentDesempilhado = lastStep.desempilhado ?? 0
     let stepsToAdd: StackStep[]
+    let actionLabel: string
 
     if (selectedOperation === 'push') {
       const parsedValue = Number(inputValue)
       if (!Number.isFinite(parsedValue)) return
       const value = parsedValue
       stepsToAdd = makeStaticPushSteps(value, currentValues, 0, currentDesempilhado)
+      actionLabel = `Empilhar: ${value}`
       setInputValue('')
     } else if (selectedOperation === 'pop') {
       stepsToAdd = makeStaticPopSteps(currentValues, currentDesempilhado)
+      actionLabel = 'Desempilhar'
     } else {
       stepsToAdd = makeStaticPeekSteps(currentValues, currentDesempilhado)
+      actionLabel = 'Consultar topo'
     }
 
     setOperationSteps((steps) => [...steps, ...stepsToAdd])
     setStepIndex(currentSteps.length)
+    recordSimulation('Pilha estática', actionLabel)
   }
   const isSimulation = activeTab === 'simulation'
   const tabs: Array<{ id: StackTab; label: string; Icon: typeof Play }> = [

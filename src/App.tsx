@@ -1,9 +1,11 @@
 import './App.css'
+import Desempenho from './pages/desempenho/Desempenho'
 import Favoritos from './pages/favoritos/Favoritos'
 import Home from './pages/home/Home'
 import Sobre from './pages/sobre/Sobre'
 import StaticStack from './pages/static-stack/StaticStack'
 import { useEffect, useState } from 'react'
+import { recordRouteVisit } from './data/progressStorage'
 
 function App() {
   const [route, setRoute] = useState(() => window.location.hash)
@@ -15,6 +17,10 @@ function App() {
     return () => window.removeEventListener('hashchange', handleHashChange)
   }, [])
 
+  useEffect(() => {
+    recordRouteVisit(route)
+  }, [route])
+
   if (route === '#pilha-estatica') {
     return <StaticStack />
   }
@@ -25,6 +31,10 @@ function App() {
 
   if (route === '#sobre') {
     return <Sobre />
+  }
+
+  if (route === '#desempenho') {
+    return <Desempenho />
   }
 
   return <Home />
