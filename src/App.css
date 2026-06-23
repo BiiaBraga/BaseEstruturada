@@ -642,6 +642,7 @@
 .learning-card.pink { --card-glow: rgba(193, 57, 132, 0.42); --card-accent: #f5449c; }
 .learning-card.cyan { --card-glow: rgba(23, 170, 181, 0.45); --card-accent: #20dbe5; }
 .learning-card.yellow { --card-glow: rgba(206, 143, 28, 0.44); --card-accent: #ffb01f; }
+.learning-card.red { --card-glow: rgba(220, 38, 38, 0.44); --card-accent: #ff3333; }
 
 .favorite-button {
   position: absolute;

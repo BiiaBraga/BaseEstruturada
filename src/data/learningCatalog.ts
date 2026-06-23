@@ -1,6 +1,11 @@
 import type { LucideIcon } from 'lucide-react'
+import arvoreBinariaImage from '../assets/algoritmos/arvoreBinaria.png'
+import arvoreMultiplosFilhosImage from '../assets/algoritmos/arvoreMultiplosFilhos.png'
+import avlImage from '../assets/algoritmos/AVL.png'
+import bstImage from '../assets/algoritmos/BST.png'
 import filaEncadeadaImage from '../assets/algoritmos/filaEncadeada.png'
 import filaEstaticaImage from '../assets/algoritmos/filaEstatica.png'
+import grafosImage from '../assets/algoritmos/grafos.png'
 import heapImage from '../assets/algoritmos/heap.png'
 import listaCircularImage from '../assets/algoritmos/listaCircular.png'
 import listaDuplamenteEncadeadaImage from '../assets/algoritmos/listaDuplamenteEncadeada.png'
@@ -8,9 +13,10 @@ import listaEncadeadaImage from '../assets/algoritmos/listaEncadeada.png'
 import listaEstaticaImage from '../assets/algoritmos/listaEstatica.png'
 import pilhaEncadeadaImage from '../assets/algoritmos/pilhaEncadeada.png'
 import pilhaEstaticaImage from '../assets/algoritmos/pilhaEstatica.png'
+import rubroNegraImage from '../assets/algoritmos/rubroNegra.png'
 import tabelaHashImage from '../assets/algoritmos/tabelaHash.png'
 
-export type CardTheme = 'green' | 'blue' | 'orange' | 'violet' | 'pink' | 'cyan' | 'yellow'
+export type CardTheme = 'green' | 'blue' | 'orange' | 'violet' | 'pink' | 'cyan' | 'yellow' | 'red'
 
 export type LearningItem = {
   aliases?: string[]
@@ -103,7 +109,7 @@ export const categories: Category[] = [
   },
   {
     title: 'Estruturas não lineares',
-    description: 'Árvores e outras relações hierárquicas.',
+    description: 'Árvores, grafos e estruturas para relações não sequenciais.',
     icon: 'network',
     items: [
       {
@@ -113,19 +119,54 @@ export const categories: Category[] = [
         image: heapImage,
         visualClassName: 'heap-image',
       },
-    ],
-  },
-  {
-    title: 'Estruturas indexadas',
-    description: 'Acesso rápido por chaves, índices e funções de mapeamento.',
-    icon: 'network',
-    items: [
       {
         title: 'Tabela Hash',
         description: 'Mapeamento via função de hash com tratamento de colisões.',
         theme: 'violet',
         image: tabelaHashImage,
         visualClassName: 'hash-image',
+      },
+      {
+        title: 'Árvore Binária',
+        description: 'Árvore binária básica para diversos usos.',
+        theme: 'blue',
+        image: arvoreBinariaImage,
+        visualClassName: 'heap-image',
+      },
+      {
+        title: 'BST (Árvore de Busca)',
+        description: 'Árvore binária ordenada para buscas eficientes.',
+        theme: 'red',
+        image: bstImage,
+        visualClassName: 'heap-image',
+      },
+      {
+        title: 'AVL',
+        description: 'Árvore balanceada com rotações automatizadas.',
+        theme: 'yellow',
+        image: avlImage,
+        visualClassName: 'heap-image',
+      },
+      {
+        title: 'Árvore Rubro-Negra',
+        description: 'Árvore balanceada por cores e rotações.',
+        theme: 'red',
+        image: rubroNegraImage,
+        visualClassName: 'heap-image',
+      },
+      {
+        title: 'Árvore de Múltiplos Filhos',
+        description: 'Árvore em que cada nó pode ter vários filhos.',
+        theme: 'orange',
+        image: arvoreMultiplosFilhosImage,
+        visualClassName: 'heap-image',
+      },
+      {
+        title: 'Grafos',
+        description: 'Estrutura formada por vértices conectados por arestas.',
+        theme: 'cyan',
+        image: grafosImage,
+        visualClassName: 'heap-image',
       },
     ],
   },
