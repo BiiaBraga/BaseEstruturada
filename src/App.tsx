@@ -1,6 +1,7 @@
 import './App.css'
 import Favoritos from './pages/favoritos/Favoritos'
 import Home from './pages/home/Home'
+import Sobre from './pages/sobre/Sobre'
 import StaticStack from './pages/static-stack/StaticStack'
 import { useEffect, useState } from 'react'
 
@@ -20,6 +21,10 @@ function App() {
 
   if (route === '#favoritos') {
     return <Favoritos />
+  }
+
+  if (route === '#sobre') {
+    return <Sobre />
   }
 
   return <Home />
