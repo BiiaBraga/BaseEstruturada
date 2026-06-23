@@ -466,6 +466,39 @@
   gap: 14px;
 }
 
+.empty-search {
+  min-height: 220px;
+  display: grid;
+  place-items: center;
+  align-content: center;
+  gap: 12px;
+  padding: 34px 24px;
+  border: 1px solid rgba(103, 130, 193, 0.16);
+  border-radius: 12px;
+  color: #cfd6ea;
+  text-align: center;
+  background: linear-gradient(145deg, rgba(15, 24, 48, 0.72), rgba(6, 14, 28, 0.78));
+}
+
+.empty-search svg {
+  width: 34px;
+  height: 34px;
+  color: #8c96ff;
+}
+
+.empty-search h2 {
+  margin: 0;
+  color: #ffffff;
+  font-size: 1.2rem;
+}
+
+.empty-search p {
+  max-width: 420px;
+  color: #aeb5c9;
+  font-size: 0.95rem;
+  line-height: 1.55;
+}
+
 .category-header {
   display: flex;
   align-items: center;

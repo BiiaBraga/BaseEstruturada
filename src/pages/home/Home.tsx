@@ -1,4 +1,5 @@
 import type { LucideIcon } from 'lucide-react'
+import { useMemo, useState } from 'react'
 import {
   ArrowUpDown,
   ChartColumn,
@@ -193,6 +194,14 @@ const sectionIcons: Record<Category['icon'], LucideIcon> = {
   sort: ArrowUpDown,
 }
 
+function normalizeSearchTerm(value: string) {
+  return value
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .trim()
+}
+
 function LockIcon() {
   return <LockKeyhole className="lock-icon" aria-hidden="true" strokeWidth={2.4} />
 }
@@ -229,6 +238,23 @@ function CardVisual({ item }: { item: LearningItem }) {
 }
 
 function Home() {
+  const [searchTerm, setSearchTerm] = useState('')
+  const normalizedSearchTerm = normalizeSearchTerm(searchTerm)
+  const filteredCategories = useMemo(() => {
+    if (!normalizedSearchTerm) {
+      return categories
+    }
+
+    return categories
+      .map((category) => {
+        const items = category.items.filter((item) => normalizeSearchTerm(item.title).includes(normalizedSearchTerm))
+
+        return { ...category, items }
+      })
+      .filter((category) => category.items.length > 0)
+  }, [normalizedSearchTerm])
+  const hasSearchResults = filteredCategories.length > 0
+
   return (
     <div className="app-shell">
       <Navbar />
@@ -237,7 +263,12 @@ function Home() {
         <header className="topbar">
           <label className="search-field">
             <span className="sr-only">Buscar estrutura ou algoritmo</span>
-            <input type="search" placeholder="Buscar estrutura ou algoritmo..." />
+            <input
+              type="search"
+              placeholder="Buscar estrutura ou algoritmo..."
+              value={searchTerm}
+              onChange={(event) => setSearchTerm(event.target.value)}
+            />
             <Search className="field-icon" aria-hidden="true" strokeWidth={1.9} />
           </label>
           <button className="theme-toggle" aria-label="Alternar tema">
@@ -304,43 +335,51 @@ function Home() {
         </section>
 
         <div className="content-grid" id="catalogo">
-          {categories.map((category) => (
-            <section className={`category-section ${category.icon}`} key={category.title}>
-              <div className="category-header">
-                <SectionIcon type={category.icon} />
-                <div>
-                  <h2>{category.title}</h2>
-                  <p>{category.description}</p>
+          {hasSearchResults ? (
+            filteredCategories.map((category) => (
+              <section className={`category-section ${category.icon}`} key={category.title}>
+                <div className="category-header">
+                  <SectionIcon type={category.icon} />
+                  <div>
+                    <h2>{category.title}</h2>
+                    <p>{category.description}</p>
+                  </div>
                 </div>
-              </div>
 
-              <div className="cards-grid">
-                {category.items.map((item) => (
-                  <article className={`learning-card ${item.theme}`} key={item.title}>
-                    <button className="favorite-button" aria-label={`Favoritar ${item.title}`}>
-                      <Star aria-hidden="true" strokeWidth={1.8} />
-                    </button>
-                    <CardVisual item={item} />
-                    <div className="card-copy">
-                      <h3>{item.title}</h3>
-                      <p>{item.description}</p>
-                    </div>
-                    {item.href ? (
-                      <a className="locked-button card-action-button" href={item.href}>
-                        <PlayImageIcon />
-                        Visualizar
-                      </a>
-                    ) : (
-                      <button className="locked-button" disabled>
-                        <LockIcon />
-                        EM BREVE
+                <div className="cards-grid">
+                  {category.items.map((item) => (
+                    <article className={`learning-card ${item.theme}`} key={item.title}>
+                      <button className="favorite-button" aria-label={`Favoritar ${item.title}`}>
+                        <Star aria-hidden="true" strokeWidth={1.8} />
                       </button>
-                    )}
-                  </article>
-                ))}
-              </div>
+                      <CardVisual item={item} />
+                      <div className="card-copy">
+                        <h3>{item.title}</h3>
+                        <p>{item.description}</p>
+                      </div>
+                      {item.href ? (
+                        <a className="locked-button card-action-button" href={item.href}>
+                          <PlayImageIcon />
+                          Visualizar
+                        </a>
+                      ) : (
+                        <button className="locked-button" disabled>
+                          <LockIcon />
+                          EM BREVE
+                        </button>
+                      )}
+                    </article>
+                  ))}
+                </div>
+              </section>
+            ))
+          ) : (
+            <section className="empty-search" aria-live="polite">
+              <Search aria-hidden="true" strokeWidth={1.9} />
+              <h2>Nenhum resultado encontrado</h2>
+              <p>Tente buscar por nomes como pilha, fila, lista, hash ou sort.</p>
             </section>
-          ))}
+          )}
         </div>
 
         <section className="performance-strip" aria-label="Teste de performance">
