@@ -168,6 +168,204 @@
   color: #ffb82e;
 }
 
+.suggest-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(1, 6, 16, 0.72);
+  backdrop-filter: blur(12px);
+}
+
+.suggest-modal {
+  width: min(620px, 100%);
+  overflow: hidden;
+  border: 1px solid rgba(139, 92, 255, 0.34);
+  border-radius: 16px;
+  background:
+    radial-gradient(circle at 12% 0%, rgba(139, 92, 255, 0.22), transparent 34%),
+    radial-gradient(circle at 100% 18%, rgba(21, 214, 163, 0.1), transparent 28%),
+    linear-gradient(145deg, rgba(12, 20, 42, 0.98), rgba(5, 13, 27, 0.98));
+  box-shadow: 0 30px 90px rgba(0, 0, 0, 0.62);
+}
+
+.suggest-modal header {
+  display: flex;
+  align-items: start;
+  justify-content: space-between;
+  gap: 18px;
+  padding: 26px 28px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.suggest-modal h2 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: 1.65rem;
+}
+
+.suggest-modal header p {
+  margin: 0;
+  color: #b9c1d3;
+  line-height: 1.55;
+}
+
+.suggest-modal header button {
+  width: 42px;
+  min-height: 42px;
+  display: grid;
+  place-items: center;
+  flex: 0 0 auto;
+  border: 1px solid rgba(103, 130, 193, 0.2);
+  border-radius: 10px;
+  color: #d9deed;
+  background: rgba(34, 51, 91, 0.42);
+  cursor: pointer;
+}
+
+.suggest-modal header button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.suggest-modal form {
+  display: grid;
+  gap: 18px;
+  padding: 24px 28px 28px;
+}
+
+.suggest-modal label {
+  display: grid;
+  gap: 9px;
+  color: #ffffff;
+  font-weight: 800;
+}
+
+.suggest-modal input,
+.suggest-modal textarea {
+  width: 100%;
+  border: 1px solid rgba(103, 130, 193, 0.2);
+  border-radius: 10px;
+  color: #ffffff;
+  background: rgba(5, 13, 29, 0.68);
+  font: inherit;
+  outline: 0;
+  transition:
+    border-color 180ms ease,
+    box-shadow 180ms ease,
+    background 180ms ease;
+}
+
+.suggest-modal input {
+  min-height: 48px;
+  padding: 0 15px;
+}
+
+.suggest-modal textarea {
+  min-height: 150px;
+  resize: vertical;
+  padding: 14px 15px;
+  line-height: 1.55;
+}
+
+.suggest-modal input::placeholder,
+.suggest-modal textarea::placeholder {
+  color: #77839c;
+}
+
+.suggest-modal input:focus,
+.suggest-modal textarea:focus {
+  border-color: rgba(151, 100, 255, 0.82);
+  background: rgba(9, 19, 42, 0.88);
+  box-shadow: 0 0 0 4px rgba(139, 92, 255, 0.14);
+}
+
+.suggest-modal-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.suggest-modal-actions button {
+  min-height: 46px;
+  padding: 0 18px;
+  border: 1px solid rgba(103, 130, 193, 0.22);
+  border-radius: 9px;
+  color: #d9deed;
+  background: rgba(34, 51, 91, 0.42);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.suggest-modal-actions button.primary {
+  border-color: transparent;
+  color: #ffffff;
+  background: linear-gradient(135deg, #793dff, #5123cf);
+  box-shadow: 0 14px 34px rgba(91, 43, 226, 0.32);
+}
+
+.suggest-modal-actions button:disabled {
+  cursor: wait;
+  opacity: 0.68;
+}
+
+.suggest-error {
+  margin: -4px 0 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 96, 112, 0.32);
+  border-radius: 9px;
+  color: #ffd5db;
+  background: rgba(255, 96, 112, 0.08);
+  line-height: 1.5;
+}
+
+.suggest-success {
+  display: grid;
+  justify-items: center;
+  gap: 14px;
+  padding: 34px 28px 30px;
+  text-align: center;
+}
+
+.suggest-success > svg {
+  width: 64px;
+  height: 64px;
+  padding: 14px;
+  border-radius: 50%;
+  color: #ffb526;
+  background: rgba(255, 181, 38, 0.13);
+  box-shadow: 0 14px 34px rgba(255, 181, 38, 0.16);
+}
+
+.suggest-success strong {
+  color: #ffffff;
+  font-size: 1.55rem;
+}
+
+.suggest-success p {
+  max-width: 420px;
+  margin: 0;
+  color: #c8cfdf;
+  line-height: 1.65;
+}
+
+.suggest-success button {
+  min-height: 46px;
+  margin-top: 6px;
+  padding: 0 24px;
+  border: 0;
+  border-radius: 9px;
+  color: #ffffff;
+  background: linear-gradient(135deg, #793dff, #5123cf);
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+}
+
 .sidebar-footer {
   margin-top: auto;
   padding-top: 18px;
@@ -1573,7 +1771,8 @@
   width: 48px;
   height: 48px;
   flex: 0 0 auto;
-  padding: 12px;
+  padding: 10px;
+  overflow: visible;
   border-radius: 50%;
   color: #ffffff;
   background: linear-gradient(135deg, #6f52ff, #3632a1);
@@ -4101,6 +4300,24 @@
 
   .suggest-button {
     display: none;
+  }
+
+  .suggest-modal-backdrop {
+    padding: 12px;
+  }
+
+  .suggest-modal header,
+  .suggest-modal form {
+    padding-left: 20px;
+    padding-right: 20px;
+  }
+
+  .suggest-modal-actions {
+    flex-direction: column-reverse;
+  }
+
+  .suggest-modal-actions button {
+    width: 100%;
   }
 
   .topbar {
