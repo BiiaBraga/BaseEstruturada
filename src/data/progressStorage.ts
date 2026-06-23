@@ -15,10 +15,17 @@ export type ProgressSimulation = {
   at: number
 }
 
+export type ProgressCodeView = {
+  fileName: string
+  title: string
+  at: number
+}
+
 export type ProgressData = {
   startedAt: number
   visits: Record<string, ProgressVisit>
   simulations: ProgressSimulation[]
+  codeViews: ProgressCodeView[]
 }
 
 const progressStorageKey = 'base-estruturada:progress'
@@ -32,6 +39,7 @@ function createEmptyProgress(): ProgressData {
     startedAt: Date.now(),
     visits: {},
     simulations: [],
+    codeViews: [],
   }
 }
 
@@ -58,6 +66,7 @@ export function getProgressData(): ProgressData {
       startedAt: typeof parsedProgress.startedAt === 'number' ? parsedProgress.startedAt : Date.now(),
       visits: parsedProgress.visits && typeof parsedProgress.visits === 'object' ? parsedProgress.visits : {},
       simulations: Array.isArray(parsedProgress.simulations) ? parsedProgress.simulations : [],
+      codeViews: Array.isArray(parsedProgress.codeViews) ? parsedProgress.codeViews : [],
     }
   } catch {
     const initialProgress = createEmptyProgress()
@@ -112,6 +121,24 @@ export function recordSimulation(title: string, action: string) {
   })
 
   progress.simulations = progress.simulations.slice(0, 80)
+  saveProgressData(progress)
+}
+
+export function recordCodeView(title: string, fileName: string) {
+  const progress = getProgressData()
+  const existingIndex = progress.codeViews.findIndex((codeView) => codeView.fileName === fileName)
+  const nextCodeView = {
+    fileName,
+    title,
+    at: Date.now(),
+  }
+
+  progress.codeViews =
+    existingIndex >= 0
+      ? [nextCodeView, ...progress.codeViews.filter((_, index) => index !== existingIndex)]
+      : [nextCodeView, ...progress.codeViews]
+
+  progress.codeViews = progress.codeViews.slice(0, 40)
   saveProgressData(progress)
 }
 

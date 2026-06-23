@@ -3,7 +3,7 @@ import { ArrowLeft, ArrowDown, ArrowUp, BarChart3, Box, CheckCircle2, ChevronDow
   Copy, Eye, GitBranch, Lightbulb, List, Moon, Play, RotateCcw, Sparkles, StepBack } from 'lucide-react'
 import Navbar from '../../components/navbar/Navbar'
 import staticStackImage from '../../assets/algoritmos/pilhaEstatica.png'
-import { recordSimulation } from '../../data/progressStorage'
+import { recordCodeView, recordSimulation } from '../../data/progressStorage'
 
 type StackTab = 'simulation' | 'code' | 'concept' | 'memory' | 'complexity'
 type MainOperation = 'push' | 'pop' | 'peek'
@@ -566,6 +566,12 @@ function StaticStack() {
       block: 'center',
     })
   }, [activeTab, stepIndex])
+
+  useEffect(() => {
+    if (activeTab === 'code') {
+      recordCodeView(content.title, content.sourceLabel)
+    }
+  }, [activeTab, content.sourceLabel, content.title])
 
   const nextStep = () => {
     if (!canGoNext) return

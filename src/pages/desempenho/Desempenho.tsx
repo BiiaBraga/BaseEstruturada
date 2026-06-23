@@ -2,7 +2,6 @@ import { useEffect, useMemo, useState } from 'react'
 import {
   BarChart3,
   Box,
-  ArrowLeft,
   Clock3,
   Code2,
   Flag,
@@ -22,13 +21,6 @@ import {
   type ProgressData,
 } from '../../data/progressStorage'
 
-function formatTime(timestamp: number) {
-  return new Intl.DateTimeFormat('pt-BR', {
-    hour: '2-digit',
-    minute: '2-digit',
-  }).format(timestamp)
-}
-
 function formatDuration(milliseconds: number) {
   const totalMinutes = Math.max(0, Math.floor(milliseconds / 60000))
   const hours = Math.floor(totalMinutes / 60)
@@ -41,10 +33,6 @@ function formatDuration(milliseconds: number) {
   return `${hours}h ${minutes}m`
 }
 
-function formatSessionMoment(timestamp: number, startedAt: number) {
-  return formatDuration(timestamp - startedAt)
-}
-
 function getProgressPercent(visitedCount: number) {
   const totalItems = getTotalLearningItemsCount()
   return totalItems > 0 ? Math.round((visitedCount / totalItems) * 100) : 0
@@ -54,7 +42,6 @@ function Desempenho() {
   const [progress, setProgress] = useState<ProgressData>(() => getProgressData())
   const [now, setNow] = useState(() => Date.now())
   const [showClearConfirmation, setShowClearConfirmation] = useState(false)
-  const [activePopup, setActivePopup] = useState<'visits' | 'activity' | null>(null)
 
   useEffect(() => {
     const interval = window.setInterval(() => {
@@ -211,57 +198,6 @@ function Desempenho() {
           </p>
         </section>
 
-        <div className="performance-columns">
-          <section className="performance-panel compact-panel">
-            <h2>Últimas estruturas visitadas</h2>
-            <p>Horário do último acesso nesta sessão</p>
-            {visitedItems.length > 0 ? (
-              <ul className="visited-list">
-                {visitedItems.slice(0, 5).map((item) => (
-                  <li key={item.title}>
-                    <Box aria-hidden="true" strokeWidth={1.9} />
-                    <span>{item.title}</span>
-                    <time title={`${formatSessionMoment(item.lastVisitedAt, progress.startedAt)} desde o início da sessão`}>
-                      {formatTime(item.lastVisitedAt)}
-                    </time>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="empty-performance-message">Nenhuma estrutura visitada ainda.</p>
-            )}
-            <button className="outline-action" type="button" onClick={() => setActivePopup('visits')}>
-              Ver todas
-            </button>
-          </section>
-
-          <section className="performance-panel compact-panel">
-            <h2>Atividade recente</h2>
-            <p>Horário das suas últimas simulações</p>
-            {simulations.length > 0 ? (
-              <ul className="activity-list">
-                {simulations.slice(0, 5).map((simulation) => (
-                  <li key={simulation.id}>
-                    <Code2 aria-hidden="true" strokeWidth={1.9} />
-                    <span>
-                      <strong>{simulation.title}</strong>
-                      <small>{simulation.action}</small>
-                    </span>
-                    <time title={`${formatSessionMoment(simulation.at, progress.startedAt)} desde o início da sessão`}>
-                      {formatTime(simulation.at)}
-                    </time>
-                  </li>
-                ))}
-              </ul>
-            ) : (
-              <p className="empty-performance-message">Nenhuma simulação realizada ainda.</p>
-            )}
-            <button className="outline-action" type="button" onClick={() => setActivePopup('activity')}>
-              Ver histórico desta sessão
-            </button>
-          </section>
-        </div>
-
         <section className="performance-panel achievements-panel">
           <h2>Conquistas desta sessão</h2>
           <p>Badges temporárias baseadas no seu progresso atual</p>
@@ -297,68 +233,6 @@ function Desempenho() {
           usar outro dispositivo irá apagar seus dados locais.
         </p>
 
-        {activePopup && (
-          <div className="performance-popup-backdrop" role="presentation">
-            <section className="performance-popup" role="dialog" aria-modal="true" aria-labelledby="performance-popup-title">
-              <header>
-                <button type="button" onClick={() => setActivePopup(null)}>
-                  <ArrowLeft aria-hidden="true" strokeWidth={1.9} />
-                  Voltar
-                </button>
-                <div>
-                  <h2 id="performance-popup-title">
-                    {activePopup === 'visits' ? 'Todas as estruturas visitadas' : 'Histórico desta sessão'}
-                  </h2>
-                  <p>
-                    {activePopup === 'visits'
-                      ? 'Horário do último acesso registrado nesta sessão.'
-                      : 'Todas as simulações registradas nesta sessão.'}
-                  </p>
-                </div>
-              </header>
-
-              <div className="performance-popup-content">
-                {activePopup === 'visits' ? (
-                  visitedItems.length > 0 ? (
-                    <ul className="visited-list full-list">
-                      {visitedItems.map((item) => (
-                        <li key={item.title}>
-                          <Box aria-hidden="true" strokeWidth={1.9} />
-                          <span>
-                            <strong>{item.title}</strong>
-                            <small>{item.category}</small>
-                          </span>
-                          <time title={`${formatSessionMoment(item.lastVisitedAt, progress.startedAt)} desde o início da sessão`}>
-                            {formatTime(item.lastVisitedAt)}
-                          </time>
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="empty-performance-message">Nenhuma estrutura visitada ainda.</p>
-                  )
-                ) : simulations.length > 0 ? (
-                  <ul className="activity-list full-list">
-                    {simulations.map((simulation) => (
-                      <li key={simulation.id}>
-                        <Code2 aria-hidden="true" strokeWidth={1.9} />
-                        <span>
-                          <strong>{simulation.title}</strong>
-                          <small>{simulation.action}</small>
-                        </span>
-                        <time title={`${formatSessionMoment(simulation.at, progress.startedAt)} desde o início da sessão`}>
-                          {formatTime(simulation.at)}
-                        </time>
-                      </li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="empty-performance-message">Nenhuma simulação realizada ainda.</p>
-                )}
-              </div>
-            </section>
-          </div>
-        )}
       </main>
     </div>
   )

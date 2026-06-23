@@ -1109,6 +1109,7 @@
 
 .outline-action {
   align-self: end;
+  margin-top: auto;
   min-height: 44px;
   display: inline-flex;
   align-items: center;
@@ -1301,6 +1302,227 @@
 .category-progress-item.green,
 .achievement-card.green {
   --performance-tone: #72e34d;
+}
+
+.history-page {
+  display: grid;
+  gap: 24px;
+}
+
+.history-header {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding-top: 8px;
+}
+
+.history-header > svg {
+  width: 58px;
+  height: 58px;
+  color: #8b5cff;
+}
+
+.history-header h1 {
+  margin: 0 0 8px;
+  color: #ffffff;
+  font-size: clamp(2.3rem, 3.4vw, 3.8rem);
+  line-height: 1;
+}
+
+.history-header p {
+  color: #c8cfdf;
+  font-size: 1.05rem;
+}
+
+.continue-card,
+.history-panel,
+.history-manage-card,
+.history-warning {
+  border: 1px solid rgba(103, 130, 193, 0.16);
+  border-radius: 12px;
+  background:
+    radial-gradient(circle at 8% 4%, rgba(126, 82, 255, 0.1), transparent 28%),
+    linear-gradient(145deg, rgba(9, 18, 37, 0.9), rgba(5, 13, 27, 0.94));
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.04);
+}
+
+.continue-card {
+  padding: 26px;
+  border-color: rgba(139, 92, 255, 0.56);
+}
+
+.continue-card h2 {
+  margin: 0 0 22px;
+  color: #9f72ff;
+  font-size: 1.45rem;
+}
+
+.continue-content {
+  display: grid;
+  grid-template-columns: 128px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 30px;
+}
+
+.continue-content > svg {
+  width: 96px;
+  height: 96px;
+  padding: 22px;
+  border: 1px solid rgba(139, 92, 255, 0.44);
+  border-radius: 10px;
+  color: #9f72ff;
+  background: rgba(70, 47, 134, 0.22);
+}
+
+.continue-content h3 {
+  margin: 0 0 10px;
+  color: #ffffff;
+  font-size: 1.8rem;
+}
+
+.continue-content p,
+.continue-content span {
+  display: block;
+  color: #c4ccdc;
+  line-height: 1.7;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+.history-panel {
+  display: flex;
+  flex-direction: column;
+  align-content: start;
+  padding: 24px;
+}
+
+.history-panel h2,
+.history-manage-card h2 {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 22px;
+  color: #ffffff;
+  font-size: 1.35rem;
+}
+
+.history-panel h2 svg {
+  width: 28px;
+  height: 28px;
+  color: #965cff;
+}
+
+.history-panel:nth-child(2) h2 svg {
+  color: #15d6a3;
+}
+
+.history-panel:nth-child(3) h2 svg {
+  color: #38a2ff;
+}
+
+.history-panel:nth-child(4) h2 svg {
+  color: #ff4f82;
+}
+
+.history-list,
+.code-history-list,
+.favorite-history-list {
+  display: grid;
+  gap: 0;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.history-list li,
+.code-history-list li,
+.favorite-history-list li {
+  display: grid;
+  grid-template-columns: 30px minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  min-height: 56px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+}
+
+.history-list li:last-child,
+.code-history-list li:last-child,
+.favorite-history-list li:last-child {
+  border-bottom: 0;
+}
+
+.code-history-list svg {
+  color: #38a2ff;
+}
+
+.favorite-history-list svg {
+  color: #ff4f82;
+}
+
+.history-list time,
+.code-history-list time,
+.favorite-history-list time {
+  color: #b8c0d0;
+}
+
+.history-list small {
+  display: block;
+  color: #aeb7ca;
+  line-height: 1.35;
+}
+
+.code-history-list small {
+  display: block;
+  color: #aeb7ca;
+  line-height: 1.35;
+}
+
+.history-manage-card {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 28px;
+}
+
+.history-manage-card h2 svg {
+  color: #ff4f6d;
+}
+
+.history-manage-card p {
+  max-width: 720px;
+  color: #c8cfdf;
+  line-height: 1.65;
+}
+
+.history-manage-card button {
+  min-height: 52px;
+  padding: 0 22px;
+  border: 1px solid rgba(255, 79, 109, 0.72);
+  border-radius: 8px;
+  color: #ff6b82;
+  background: rgba(255, 79, 109, 0.08);
+  cursor: pointer;
+}
+
+.history-warning {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 18px 22px;
+  color: #b9c1d3;
+  line-height: 1.6;
+}
+
+.history-warning svg {
+  width: 22px;
+  height: 22px;
+  flex: 0 0 auto;
 }
 
 .category-section {
@@ -3767,6 +3989,10 @@
   .performance-columns {
     grid-template-columns: 1fr;
   }
+
+  .history-grid {
+    grid-template-columns: 1fr;
+  }
 }
 
 @media (max-width: 900px) {
@@ -4004,6 +4230,21 @@
   }
 
   .performance-popup header button {
+    width: 100%;
+  }
+
+  .history-header,
+  .history-manage-card {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .continue-content {
+    grid-template-columns: 1fr;
+  }
+
+  .continue-content .primary-action,
+  .history-manage-card button {
     width: 100%;
   }
 

@@ -1,6 +1,7 @@
 import './App.css'
 import Desempenho from './pages/desempenho/Desempenho'
 import Favoritos from './pages/favoritos/Favoritos'
+import Historico from './pages/historico/Historico'
 import Home from './pages/home/Home'
 import Sobre from './pages/sobre/Sobre'
 import StaticStack from './pages/static-stack/StaticStack'
@@ -35,6 +36,10 @@ function App() {
 
   if (route === '#desempenho') {
     return <Desempenho />
+  }
+
+  if (route === '#historico') {
+    return <Historico />
   }
 
   return <Home />
