@@ -8,14 +8,15 @@ import logoIcon from '../../assets/icons/icon_logo.png'
 type MenuItem = {
   label: string
   Icon: LucideIcon
+  href: string
 }
 
 const menuItems: MenuItem[] = [
-  { label: 'Inicio', Icon: House },
-  { label: 'Favoritos', Icon: Heart },
-  { label: 'Historico', Icon: History },
-  { label: 'Desempenho', Icon: ChartNoAxesCombined },
-  { label: 'Sobre', Icon: Info },
+  { label: 'Inicio', Icon: House, href: '#inicio' },
+  { label: 'Favoritos', Icon: Heart, href: '#favoritos' },
+  { label: 'Histórico', Icon: History, href: '#historico' },
+  { label: 'Desempenho', Icon: ChartNoAxesCombined, href: '#desempenho' },
+  { label: 'Sobre', Icon: Info, href: '#sobre' },
 ]
 
 const mentorCardStyle = {
@@ -23,6 +24,8 @@ const mentorCardStyle = {
 } as CSSProperties
 
 function Navbar() {
+  const currentRoute = window.location.hash || '#inicio'
+
   return (
     <aside className="sidebar" aria-label="Navegacao principal">
       <a className="brand" href="#inicio" aria-label="Base Estruturada - inicio">
@@ -34,11 +37,11 @@ function Navbar() {
       </a>
 
       <nav className="sidebar-nav">
-        {menuItems.map(({ label, Icon }, index) => (
-          <button className={`nav-button ${index === 0 ? 'active' : ''}`} key={label}>
+        {menuItems.map(({ label, Icon, href }) => (
+          <a className={`nav-button ${currentRoute === href ? 'active' : ''}`} href={href} key={label}>
             <Icon className="nav-icon" aria-hidden="true" strokeWidth={1.9} />
             {label}
-          </button>
+          </a>
         ))}
       </nav>
 
@@ -51,7 +54,7 @@ function Navbar() {
         <p>
           Aprenda visualizando
           <br />
-          cada passo do codigo
+          cada passo do código
           <br />
           em tempo real!
         </p>

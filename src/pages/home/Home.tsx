@@ -14,177 +14,17 @@ import {
   Star,
 } from 'lucide-react'
 import Navbar from '../../components/navbar/Navbar'
+import {
+  categories,
+  favoritesStorageKey,
+  getStoredFavorites,
+  type Category,
+  type LearningItem,
+} from '../../data/learningCatalog'
 import computadorImage from '../../assets/computador.png'
-import filaEncadeadaImage from '../../assets/algoritmos/filaEncadeada.png'
-import filaEstaticaImage from '../../assets/algoritmos/filaEstatica.png'
-import heapImage from '../../assets/algoritmos/heap.png'
-import listaCircularImage from '../../assets/algoritmos/listaCircular.png'
-import listaDuplamenteEncadeadaImage from '../../assets/algoritmos/listaDuplamenteEncadeada.png'
-import listaEncadeadaImage from '../../assets/algoritmos/listaEncadeada.png'
-import listaEstaticaImage from '../../assets/algoritmos/listaEstatica.png'
-import pilhaEncadeadaImage from '../../assets/algoritmos/pilhaEncadeada.png'
-import pilhaEstaticaImage from '../../assets/algoritmos/pilhaEstatica.png'
-import tabelaHashImage from '../../assets/algoritmos/tabelaHash.png'
 import conteudosIcon from '../../assets/icons/icon_conteudos.png'
 import possibilidadesIcon from '../../assets/icons/icon_possibilidades.png'
 import playIcon from '../../assets/icons/icon_play.png'
-
-type CardTheme = 'green' | 'blue' | 'orange' | 'violet' | 'pink' | 'cyan' | 'yellow'
-
-type LearningItem = {
-  title: string
-  description: string
-  theme: CardTheme
-  image?: string
-  Icon?: LucideIcon
-  visualClassName?: string
-  customVisual?: 'sortBars'
-  href?: string
-}
-
-type Category = {
-  title: string
-  description: string
-  icon: 'linear' | 'network' | 'sort'
-  items: LearningItem[]
-}
-
-const categories: Category[] = [
-  {
-    title: 'Estruturas lineares',
-    description: 'Listas, pilhas e filas - organizacao sequencial dos dados.',
-    icon: 'linear',
-    items: [
-      {
-        title: 'Lista estatica',
-        description: 'Lista baseada em arranjo de tamanho fixo.',
-        theme: 'green',
-        image: listaEstaticaImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Lista encadeada',
-        description: 'Nos conectados por ponteiros.',
-        theme: 'blue',
-        image: listaEncadeadaImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Lista circular',
-        description: 'O ultimo no aponta de volta ao primeiro.',
-        theme: 'orange',
-        image: listaCircularImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Lista duplamente encadeada',
-        description: 'Cada no referencia anterior e proximo.',
-        theme: 'violet',
-        image: listaDuplamenteEncadeadaImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Pilha estatica',
-        description: 'Estrutura UEPS baseada em arranjo com topo controlado por indice.',
-        theme: 'pink',
-        image: pilhaEstaticaImage,
-        visualClassName: 'linear-image',
-        href: '#pilha-estatica',
-      },
-      {
-        title: 'Pilha encadeada',
-        description: 'Estrutura UEPS usando nos e ponteiros.',
-        theme: 'cyan',
-        image: pilhaEncadeadaImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Fila estatica',
-        description: 'Fila PEPS em arranjo circular.',
-        theme: 'yellow',
-        image: filaEstaticaImage,
-        visualClassName: 'linear-image',
-      },
-      {
-        title: 'Fila encadeada',
-        description: 'Fila PEPS baseada em ponteiros.',
-        theme: 'blue',
-        image: filaEncadeadaImage,
-        visualClassName: 'linear-image',
-      },
-    ],
-  },
-  {
-    title: 'Estruturas nao lineares',
-    description: 'Arvores e tabelas - relacoes hierarquicas e indexadas.',
-    icon: 'network',
-    items: [
-      {
-        title: 'Heap',
-        description: 'Arvore binaria com propriedade de heap.',
-        theme: 'green',
-        image: heapImage,
-        visualClassName: 'heap-image',
-      },
-      {
-        title: 'Tabela Hash',
-        description: 'Mapeamento via funcao de hash com tratamento de colisoes.',
-        theme: 'violet',
-        image: tabelaHashImage,
-        visualClassName: 'hash-image',
-      },
-    ],
-  },
-  {
-    title: 'Algoritmos de ordenacao',
-    description: 'Organize dados de formas diferentes e compare desempenhos.',
-    icon: 'sort',
-    items: [
-      {
-        title: 'Bubble Sort',
-        description: 'Compara pares vizinhos e empurra maiores para o fim.',
-        theme: 'orange',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Selection Sort',
-        description: 'Seleciona o menor valor para cada posicao.',
-        theme: 'violet',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Insertion Sort',
-        description: 'Insere cada item na parte ja ordenada.',
-        theme: 'green',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Shell Sort',
-        description: 'Ordena por saltos cada vez menores.',
-        theme: 'cyan',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Merge Sort',
-        description: 'Divide, ordena e combina sublistas.',
-        theme: 'blue',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Quick Sort',
-        description: 'Particiona usando pivo e resolve recursivamente.',
-        theme: 'pink',
-        customVisual: 'sortBars',
-      },
-      {
-        title: 'Heap Sort',
-        description: 'Usa heap para extrair os maiores valores.',
-        theme: 'yellow',
-        customVisual: 'sortBars',
-      },
-    ],
-  },
-]
 
 const complexityItems = ['O(1)', 'O(log n)', 'O(n)', 'O(n log n)', 'O(n²)', 'O(2ⁿ)']
 
@@ -239,6 +79,7 @@ function CardVisual({ item }: { item: LearningItem }) {
 
 function Home() {
   const [searchTerm, setSearchTerm] = useState('')
+  const [favoriteTitles, setFavoriteTitles] = useState<string[]>(getStoredFavorites)
   const normalizedSearchTerm = normalizeSearchTerm(searchTerm)
   const filteredCategories = useMemo(() => {
     if (!normalizedSearchTerm) {
@@ -254,6 +95,22 @@ function Home() {
       .filter((category) => category.items.length > 0)
   }, [normalizedSearchTerm])
   const hasSearchResults = filteredCategories.length > 0
+
+  function isFavorite(item: LearningItem) {
+    return favoriteTitles.includes(item.title) || item.aliases?.some((alias) => favoriteTitles.includes(alias))
+  }
+
+  function toggleFavorite(item: LearningItem) {
+    setFavoriteTitles((currentFavorites) => {
+      const itemTitles = [item.title, ...(item.aliases ?? [])]
+      const nextFavorites = itemTitles.some((title) => currentFavorites.includes(title))
+        ? currentFavorites.filter((favoriteTitle) => !itemTitles.includes(favoriteTitle))
+        : [...currentFavorites, item.title]
+
+      window.localStorage.setItem(favoritesStorageKey, JSON.stringify(nextFavorites))
+      return nextFavorites
+    })
+  }
 
   return (
     <div className="app-shell">
@@ -281,7 +138,7 @@ function Home() {
             <h1>
               Base <span>Estruturada</span>
             </h1>
-            <p>Aprenda estruturas de dados e algoritmos visualizando o codigo e a execucao passo a passo.</p>
+            <p>Aprenda estruturas de dados e algoritmos visualizando o código e a execução, passo a passo.</p>
             <div className="hero-actions">
               <a href="#catalogo" className="primary-action">
                 <Rocket aria-hidden="true" strokeWidth={2.2} />
@@ -305,8 +162,8 @@ function Home() {
               <span className="tone-purple"> Domine.</span>
             </h2>
             <p>
-              Cada linha de <span className="text-purple">codigo e executada</span> e{' '}
-              <span className="text-purple">explicada visualmente</span> para voce entender de verdade.
+              Cada linha de <span className="text-purple">código é executada</span> e{' '}
+              <span className="text-purple">explicada visualmente</span> para você entender de verdade.
             </p>
             <dl>
               <div className="stat-item purple">
@@ -314,7 +171,7 @@ function Home() {
                 <dt>
                   <span className="stat-value">20+</span>
                 </dt>
-                <dd className="stat-label">Conteudos</dd>
+                <dd className="stat-label">Conteúdos</dd>
               </div>
               <div className="stat-item cyan">
                 <Code2 className="stat-icon" aria-hidden="true" strokeWidth={2.2} />
@@ -349,7 +206,13 @@ function Home() {
                 <div className="cards-grid">
                   {category.items.map((item) => (
                     <article className={`learning-card ${item.theme}`} key={item.title}>
-                      <button className="favorite-button" aria-label={`Favoritar ${item.title}`}>
+                      <button
+                        className={`favorite-button ${isFavorite(item) ? 'active' : ''}`}
+                        type="button"
+                        aria-label={`${isFavorite(item) ? 'Remover dos favoritos' : 'Favoritar'} ${item.title}`}
+                        aria-pressed={isFavorite(item)}
+                        onClick={() => toggleFavorite(item)}
+                      >
                         <Star aria-hidden="true" strokeWidth={1.8} />
                       </button>
                       <CardVisual item={item} />
@@ -386,7 +249,7 @@ function Home() {
           <Gauge className="performance-icon" aria-hidden="true" strokeWidth={1.8} />
           <div className="performance-copy">
             <h2>Teste de performance</h2>
-            <p>Compare complexidade de tempo e espaco com graficos simples quando as visualizacoes forem liberadas.</p>
+            <p>Compare complexidade de tempo e espaço com gráficos simples quando as visualizações forem liberadas.</p>
             <button className="locked-button" disabled>
               <LockIcon />
               EM BREVE
